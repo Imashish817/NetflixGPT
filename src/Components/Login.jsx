@@ -1,11 +1,14 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { formValidation } from "../Utils/FormValidation";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
+import { auth } from "../Utils/Firebase";
 
 const Login = () => {
   const [islogin, setIsLogin] = useState(true);
   const [isError, setIsError] = useState(null);
+  const Navigate=useNavigate();
   const Password = useRef(null);
   const Email = useRef(null);
   const Name = useRef(null);
@@ -20,6 +23,47 @@ const Login = () => {
       Password?.current?.value
     );
     setIsError(error);
+
+    if (!error) {
+      if (islogin) {
+        //sign in
+        signInWithEmailAndPassword(auth, Email?.current?.value, Password?.current?.value)
+          .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log(user);
+            Navigate("/browse")
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorMessage);
+            if(errorMessage==="Firebase: Error (auth/invalid-credential).")
+            {
+              setIsError("Hmmm!!! creditians are worng");
+            }
+          });
+
+
+      }
+      else {
+        //signup
+        createUserWithEmailAndPassword(auth, Email?.current?.value, Password?.current?.value)
+          .then((userCredential) => {
+            // Signed up 
+            const user = userCredential.user;
+            console.log(user);
+            Navigate("/browse")
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorMessage);
+            
+           
+          });
+      }
+    }
   };
   return (
     <>
