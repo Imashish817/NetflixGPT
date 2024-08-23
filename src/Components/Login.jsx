@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { Link, useNavigate } from "react-router-dom";
 import { formValidation } from "../Utils/FormValidation";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile  } from "firebase/auth";
 import { auth } from "../Utils/Firebase";
 
 const Login = () => {
@@ -33,6 +33,7 @@ const Login = () => {
             const user = userCredential.user;
             console.log(user);
             Navigate("/browse")
+           
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -53,7 +54,16 @@ const Login = () => {
             // Signed up 
             const user = userCredential.user;
             console.log(user);
-            Navigate("/browse")
+            updateProfile(auth.currentUser, {
+              displayName:  Name?.current?.value, photoURL: "https://example.com/jane-q-user/profile.jpg"
+            }).then(() => {
+              // Profile updated!
+            
+            }).catch((error) => {
+              // An error occurred
+              // ...
+            });
+          
           })
           .catch((error) => {
             const errorCode = error.code;
