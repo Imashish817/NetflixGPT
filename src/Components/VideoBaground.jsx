@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { TrailerBaseURL, getOptions } from '../Utils/constants';
 const fetch = require('node-fetch');
 const VideoBaground = ({ moviId }) => {
-    console.log(moviId)
+    // console.log(moviId)
     const [trailerId, setTrailerId] = useState("")
     useEffect(() => {
         getmoviTrailer();
@@ -15,7 +15,7 @@ const VideoBaground = ({ moviId }) => {
                 const FilteredVideos = json?.results.filter((m) => m?.type === "Trailer");
                 const trailerid = FilteredVideos[0]?.key || json?.results[0]?.key;
                 setTrailerId(trailerid)
-                console.log(trailerid)
+                // console.log(trailerid)
             })
             .catch(err => console.error('error:' + err));
     }

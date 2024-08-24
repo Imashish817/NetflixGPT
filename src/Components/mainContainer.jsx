@@ -11,7 +11,7 @@ const MainContainer = () => {
     return;
   }
   const mainMovie=movies[Math.floor(Math.random() * 21)];
-  console.log(mainMovie)
+  // console.log(mainMovie)
   return (
     <div className=''>
       <VideoTitle VideoTitle={mainMovie?.title} overview={mainMovie?.overview} />

@@ -16,7 +16,7 @@ const useNowPlayingMovies= ()=>{
 useEffect(()=>{
   fetch(url, options)
   .then(res => res.json())
-  .then(json => {console.log(json)
+  .then(json => {
   Dispatch(addNowplayingMovies(json.results))
   })
   .catch(err => console.error('error:' + err));

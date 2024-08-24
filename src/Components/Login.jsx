@@ -16,7 +16,7 @@ const Login = () => {
     setIsLogin(!islogin);
   };
   const handleSubmit = () => {
-    console.log(Email.current.value);
+    // console.log(Email.current.value);
     const error = formValidation(
       Name?.current?.value,
       Email?.current?.value,
@@ -31,14 +31,14 @@ const Login = () => {
           .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
-            console.log(user);
+            // console.log(user);
             Navigate("/browse")
            
           })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorMessage);
+            // console.log(errorMessage);
             if(errorMessage==="Firebase: Error (auth/invalid-credential).")
             {
               setIsError("Hmmm!!! creditians are worng");
@@ -53,7 +53,7 @@ const Login = () => {
           .then((userCredential) => {
             // Signed up 
             const user = userCredential.user;
-            console.log(user);
+            // console.log(user);
             updateProfile(auth.currentUser, {
               displayName:  Name?.current?.value, photoURL: "https://example.com/jane-q-user/profile.jpg"
             }).then(() => {
