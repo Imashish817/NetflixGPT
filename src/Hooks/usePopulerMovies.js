@@ -1,20 +1,21 @@
 
 import { useDispatch } from 'react-redux'
-import { addNowplayingMovies } from '../Utils/moviesSlice';
+import { addNowplayingMovies, addPopulerMovies } from '../Utils/moviesSlice';
 import { useEffect } from 'react';
 import { getOptions } from '../Utils/constants';
 
-const useNowPlayingMovies= ()=>{
+const usePopulerMovies= ()=>{
     const Dispatch=useDispatch();
-  const url = 'https://api.themoviedb.org/3/movie/now_playing?page=1';
+  const url = 'https://api.themoviedb.org/3/movie/popular?page=2';
+  
 useEffect(()=>{
   fetch(url, getOptions)
   .then(res => res.json())
   .then(json => {
-  Dispatch(addNowplayingMovies(json.results))
+  Dispatch(addPopulerMovies(json.results))
   })
   .catch(err => console.error('error:' + err));
 },[])
 }
 
-export default useNowPlayingMovies;
+export default usePopulerMovies;

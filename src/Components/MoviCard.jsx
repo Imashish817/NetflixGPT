@@ -1,7 +1,7 @@
 import React from 'react'
 
 const MoviCard = ({ Title, poster }) => {
-  console.log(Title)
+ 
   return (
     <div className="">
       <div className='w-40 px-2 text-white rounded-lg'>

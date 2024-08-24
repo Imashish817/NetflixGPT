@@ -1,5 +1,5 @@
 {
-  "homepage":"https://Imashish817.github.io/NetflixGPT",
+  "homepage": "https://Imashish817.github.io/NetflixGPT",
   "name": "neflix-gpt",
   "version": "0.1.0",
   "private": true,
@@ -10,6 +10,7 @@
     "firebase": "^10.12.5",
     "gh-pages": "^6.1.1",
     "node-fetch": "^2.7.0",
+    "openai": "^4.56.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-redux": "^9.1.2",
@@ -20,7 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "predeploy": "npm run build",
-    "deploy":"gh-pages -d build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
