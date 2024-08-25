@@ -6,11 +6,12 @@ const MoviesList = ({movies, title}) => {
   return (
    
       <div className=''>
-        <div className='flex'>
+        <div className='flex h-64'>
           {
-             <MoviCard poster={movies?.poster_path} />
+             movies.poster_path && <MoviCard poster={movies?.poster_path} />
           }
         </div>
+  
       </div>
    
   )

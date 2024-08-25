@@ -15,7 +15,7 @@ const GPTSearchBar = () => {
     const url = 'https://api.themoviedb.org/3/search/movie?query=' + movi_name + '&include_adult=true&page=1&language=en-US';
     const data= await fetch(url, getOptions);
     const json=await data.json();
-    console.log(json.results)
+    // console.log(json.results)
     const filtered=json.results.filter((m)=> {
 
       return m.title.toLowerCase()=== movi_name.toLowerCase()
@@ -24,7 +24,7 @@ const GPTSearchBar = () => {
   }
 
   const handleSearch = async () => {
-    console.log(process.env.REACT_APP_NEXT_PUBLIC_OPENAI_KEY)
+    // console.log(process.env.REACT_APP_NEXT_PUBLIC_OPENAI_KEY)
     const client = new OpenAI({
       apiKey: process.env.REACT_APP_NEXT_PUBLIC_OPENAI_KEY,
       dangerouslyAllowBrowser: true
@@ -37,12 +37,13 @@ const GPTSearchBar = () => {
       model: 'gpt-3.5-turbo',
     });
     const Result = GPTResult.choices[0].message.content.split(",");
+    const r=Result.map((r)=> r.match(/(?:^\d+\.\s*)?(.*)/)[1].trim())
     // const Result=["Ringu", "Ju-on: The Grudge", "Dark Water", "Audition", "Pulse", "Kwaidan", "One Missed Call", "Tokyo Gore Police", 'Cure', "Over Your Dead Body"]
-    console.log(GPTResult.choices[0].message.content);
-    const movi_promish=Result.map((movi) => {
+    // console.log(r);
+    const movi_promish=r.map((movi) => {
        return TMDBMoviserch(movi);
     })
-    console.log(movi_promish)
+    // console.log(movi_promish)
     const serchMoviesList=await Promise.all(movi_promish);
     
     

@@ -12,7 +12,7 @@ const Header = () => {
   const Dispatch=useDispatch();
   const user=useSelector((store)=> store.user)
   const GPTBTN=useSelector((store)=> store.GPTSearch.GPTSearchToggle)
-  console.log(GPTBTN)
+  // console.log(GPTBTN)
  
   const Navigate=useNavigate();
   const handleSignout=()=>{
@@ -43,21 +43,19 @@ const Header = () => {
     Dispatch(toggleGPTSearch())
   }
   return (
-      <div className='absolute bg-gradient-to-b from-black w-full z-10 flex justify-between'>
-        <img className='w-44 mx-0 -my-10' src={l} alt='logo' />
-      
-        {user && <div className='flex'>
-        {/* <form className=' bg-black bg-opacity-70 grid grid-cols-12 rounded-xl'>
-        <input type="text" className='p-2 col-span-12 m-3 rounded-lg ' placeholder='What do you want to see Today?' onClick={handleSearchView}/>
-       
-      </form> */}
-        <button className='text-white m-6 border h-12 px-5 opacity-40 rounded-xl hover:bg-red-800 hover:opacity-100 hover:font-bold'
-        onClick={handleSearchView}>{GPTBTN? "Home":"GPT Serch"}</button>
-        <div>
-        <img className='my-auto h-12 w-12 justify-center mt-6 border' src='https://occ-0-3216-2164.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABTZ2zlLdBVC05fsd2YQAR43J6vB1NAUBOOrxt7oaFATxMhtdzlNZ846H3D8TZzooe2-FT853YVYs8p001KVFYopWi4D4NXM.png' />
+      <div className='absolute w-full z-10 flex flex-col justify-between bg-black md:align-middle md:flex-row'>
+        <img className='w-[50%] h-auto pt-2 mx-auto md:mx-2 md:w-[20%]' src={l} alt='logo' />
+        {user && <div className='flex p-0 justify-around '>
+        <button className='text-white m-1 border h-7 px-5 rounded-md hover:bg-red-800 hover:opacity-100 hover:font-bold md:mt-[8%]'
+        onClick={handleSearchView}>{GPTBTN? "Home":"GPT Search"}</button>
+        <div className='flex'>
+        <img onClick={handleSignout} className='cursor-pointer   h-7 md:mt-[18%]' src='https://occ-0-3216-2164.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABTZ2zlLdBVC05fsd2YQAR43J6vB1NAUBOOrxt7oaFATxMhtdzlNZ846H3D8TZzooe2-FT853YVYs8p001KVFYopWi4D4NXM.png' />
+        <button onClick={handleSignout}className='text-white text text-white  h-8   '>(Signout)</button>
+
         {/* <p className='text-center border font-bold my-auto'>{user?.displayName}</p> */}
+       
         </div>
-        <button onClick={handleSignout}className='font-bold text-white border my-6 rounded-xl px-2 mx-3'>Signout</button>
+        
       </div>}
       </div>
 
